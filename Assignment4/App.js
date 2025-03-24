@@ -35,7 +35,7 @@ import {
                 <Pressable
                     style={{
                     marginTop: 20,
-                    backgroundColor: 'red',
+                    backgroundColor: 'blue',
                     padding: 20,
                     justifyContent: 'center',
                     alignItems: 'center',
