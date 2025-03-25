@@ -7,9 +7,10 @@ import {
 
  import { style } from "./style.js";
 
+
  const Title=(props)=>{
     return (
-        <Text style={style.title}>{props.title}</Text>
+       <Text style={style.title}>{props.title}</Text>
     )
  }
  Title.propTypes={
