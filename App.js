@@ -130,13 +130,13 @@ import UserPost from "./components/UserPost/UserPost";
   // //For that, we're going to create a function and call it pagination.
   //What it's going to do is it's going to take the whole database of the users.
 
-  const userPostsPageSize=4;
+  const userPostsPageSize=2;
   const [userPostsCurrentPage,setUserPostsCurrentPage]=useState(1);
   const [userPostsRenderedData,setUserPostsRenderedData]=useState([]);
   const [isLoadingUserPosts,setIsLoadingUserPosts]=useState(false);
 
   const pagination=(database,currentPage,pageSize)=>{
-      console.log('current page ',currentPage)
+      //console.log('current page ',currentPage)
     //The first time we fetch it, we want it to be index zero.
     //The second time we fetch it, we want it to be index four.
     //The third time we fetch it, we want it to be index eight.
@@ -157,6 +157,11 @@ import UserPost from "./components/UserPost/UserPost";
     const getInitialData = pagination(userStories, 1, userStoriesPageSize);
     setUserStoriesRenderedData(getInitialData);
     setIsLoadingUserStories(false);
+
+    setIsLoadingUserStories(true);
+    const getInitialDataPosts = pagination(userPosts, 1, userPostsPageSize);
+    setUserPostsRenderedData(getInitialDataPosts);
+    setIsLoadingUserPosts(false);
   }, []);
   /* eslint-disable react-hooks/exhaustive-deps */  
 
@@ -204,8 +209,30 @@ import UserPost from "./components/UserPost/UserPost";
               />
             </View>
           </>}
+          onEndReachedThreshold={0.5}
+          onEndReached={()=>{
+            //console.log('We have reached the end of posts')
+            if(isLoadingUserPosts) {
+              return;
+            }
+            setIsLoadingUserPosts(true);
+            console.log('fetching more data for u', userPostsCurrentPage+1)
+            const contentToAppend=pagination(
+              userPosts,
+              userPostsCurrentPage+1,
+              userPostsPageSize
+            );
+            if(contentToAppend.length>0){
+              setUserPostsCurrentPage(userPostsCurrentPage+1);
+              setUserPostsRenderedData(prev=>[
+                ...prev, 
+                ...contentToAppend
+              ]);
+            }
+            setIsLoadingUserPosts(false)
+          }}
           showsVerticalScrollIndicator={false}
-          data={userPosts}
+          data={userPostsRenderedData}
           renderItem={({item})=>(
             <View style={globalStyle.userPostContainer}>
               <UserPost
