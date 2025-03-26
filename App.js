@@ -158,7 +158,7 @@ import UserPost from "./components/UserPost/UserPost";
     setUserStoriesRenderedData(getInitialData);
     setIsLoadingUserStories(false);
 
-    setIsLoadingUserStories(true);
+    setIsLoadingUserPosts(true);
     const getInitialDataPosts = pagination(userPosts, 1, userPostsPageSize);
     setUserPostsRenderedData(getInitialDataPosts);
     setIsLoadingUserPosts(false);
@@ -185,16 +185,22 @@ import UserPost from "./components/UserPost/UserPost";
                 onEndReachedThreshold={0.5}
                 onEndReached={()=>{
                   // console.log('we have reeached the end')
+                  console.log('End reached for user stories');
                   if(isLoadingUserStories) {
                     return;
                   }
                   setIsLoadingUserStories(true);
-                  const contentToAppend=pagination(userStories,userStoriesCurrentPage+1,userStoriesPageSize);
+                  const contentToAppend=pagination(
+                    userStories,
+                    userStoriesCurrentPage+1,
+                    userStoriesPageSize,
+                  );
+                  console.log('Content to Append:', contentToAppend);
                   if(contentToAppend.length>0){
-                    setUserStoriesCurrentPage(userStoriesCurrentPage+1);
+                    setUserStoriesCurrentPage((prev) => prev + 1);
                     setUserStoriesRenderedData(prev=>[...prev, ...contentToAppend]);
                   }
-                  setIsLoadingUserStories(false)
+                  setIsLoadingUserStories(false);
                 }}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}

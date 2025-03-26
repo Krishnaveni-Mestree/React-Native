@@ -8,7 +8,7 @@ export const style=StyleSheet.create({
         justifyContent:'space-between',
     },
     userContainer:{
-        flexDirection:'row'
+        flexDirection:'row',
     },
     userTextContainer:{
         justifyContent:'center',
