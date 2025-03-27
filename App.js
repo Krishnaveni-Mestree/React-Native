@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
-  Switch,
-  Platform,
  } from "react-native";
 import Title from "./components/Title/Title";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -139,10 +137,9 @@ import { scaleFontSize } from "./assets/styles/scaling";
   const [userPostsRenderedData,setUserPostsRenderedData]=useState([]);
   const [isLoadingUserPosts,setIsLoadingUserPosts]=useState(false);
 
-  const [isOn,setIsOn]=useState(false);
 
   const [screenData,setScreenData]=useState(Dimensions.get('screen'));
-  console.log(screenData);
+  console.log('Dimensions',screenData);
 
   const pagination=(database,currentPage,pageSize)=>{
       //console.log('current page ',currentPage)
@@ -174,7 +171,7 @@ import { scaleFontSize } from "./assets/styles/scaling";
 
     //changing dimensions
     Dimensions.addEventListener('change',result=>{
-      setScreenData(result.screen)
+      setScreenData(result.screen);
     })
   }, []);
   /* eslint-disable react-hooks/exhaustive-deps */  
@@ -198,27 +195,6 @@ import { scaleFontSize } from "./assets/styles/scaling";
                 </View>
               </TouchableOpacity>
             </View>
-
-            <View 
-              style={{
-                flex:1,
-                flexDirection:'row',
-                justifyContent:'flex-start'
-              }}
-            >
-                <Switch 
-                  style={Platform.OS === 'android' && {
-                    transform:[{scaleX:1.5},{scaleY:1.5}]
-                  }}
-                  trackColor={Platform.OS === 'android' && {
-                    false:'grey',
-                    true:'green'
-                  }}
-                  //ios_backgroundColor={'#000}  //for ios cant apply the trackColor
-                  value={isOn} 
-                  onValueChange={(value)=>{setIsOn(value)}} />
-            </View>
-
             <View style={globalStyle.userStoryContainer}>
               <FlatList
                 onEndReachedThreshold={0.5}
