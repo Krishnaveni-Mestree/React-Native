@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  Dimensions,
+  StatusBar,
  } from "react-native";
 import Title from "./components/Title/Title";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -138,9 +138,6 @@ import { scaleFontSize } from "./assets/styles/scaling";
   const [isLoadingUserPosts,setIsLoadingUserPosts]=useState(false);
 
 
-  const [screenData,setScreenData]=useState(Dimensions.get('screen'));
-  console.log('Dimensions',screenData);
-
   const pagination=(database,currentPage,pageSize)=>{
       //console.log('current page ',currentPage)
     //The first time we fetch it, we want it to be index zero.
@@ -168,16 +165,12 @@ import { scaleFontSize } from "./assets/styles/scaling";
     const getInitialDataPosts = pagination(userPosts, 1, userPostsPageSize);
     setUserPostsRenderedData(getInitialDataPosts);
     setIsLoadingUserPosts(false);
-
-    //changing dimensions
-    Dimensions.addEventListener('change',result=>{
-      setScreenData(result.screen);
-    })
   }, []);
   /* eslint-disable react-hooks/exhaustive-deps */  
 
   return(
     <SafeAreaView>
+      <StatusBar backgroundColor={'red'} barStyle={"dark-content"} />
       <View>
         <FlatList
           ListHeaderComponent={
