@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { 
   SafeAreaView,
   View,
@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  Switch,
+  Platform,
  } from "react-native";
 import Title from "./components/Title/Title";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -137,6 +139,8 @@ import { scaleFontSize } from "./assets/styles/scaling";
   const [userPostsRenderedData,setUserPostsRenderedData]=useState([]);
   const [isLoadingUserPosts,setIsLoadingUserPosts]=useState(false);
 
+  const [isOn,setIsOn]=useState(false);
+
   const [screenData,setScreenData]=useState(Dimensions.get('screen'));
   console.log(screenData);
 
@@ -194,6 +198,27 @@ import { scaleFontSize } from "./assets/styles/scaling";
                 </View>
               </TouchableOpacity>
             </View>
+
+            <View 
+              style={{
+                flex:1,
+                flexDirection:'row',
+                justifyContent:'flex-start'
+              }}
+            >
+                <Switch 
+                  style={Platform.OS === 'android' && {
+                    transform:[{scaleX:1.5},{scaleY:1.5}]
+                  }}
+                  trackColor={Platform.OS === 'android' && {
+                    false:'grey',
+                    true:'green'
+                  }}
+                  //ios_backgroundColor={'#000}  //for ios cant apply the trackColor
+                  value={isOn} 
+                  onValueChange={(value)=>{setIsOn(value)}} />
+            </View>
+
             <View style={globalStyle.userStoryContainer}>
               <FlatList
                 onEndReachedThreshold={0.5}
