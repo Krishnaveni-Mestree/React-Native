@@ -6,6 +6,7 @@ import UserProfileImage from "../UserProfileImage/UserProfileImage";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark, faHeart, faMessage } from "@fortawesome/free-regular-svg-icons";
+import { horizontalScale, scaleFontSize } from "../../assets/styles/scaling";
 
 const UserPost=(props)=>{
     return(
@@ -15,7 +16,7 @@ const UserPost=(props)=>{
                 <View style={style.userContainer}>
                     <UserProfileImage 
                         profileImage={props.profileImage} 
-                        imageDimensions={48}
+                        imageDimensions={horizontalScale(43)}
                     />
                     <View style={style.userTextContainer}>
                         <Text style={style.userName}>
@@ -24,7 +25,7 @@ const UserPost=(props)=>{
                         {props.location && <Text style={style.location}>{props.location}</Text>}
                     </View>
                 </View>
-                <FontAwesomeIcon icon={faEllipsisH} size={24} color={'#79869F'}/>
+                <FontAwesomeIcon icon={faEllipsisH} size={scaleFontSize(24)} color={'#79869F'}/>
             </View>
             <View style={style.postImage}>
                 <Image source={props.image}/>
@@ -32,7 +33,7 @@ const UserPost=(props)=>{
             <View style={style.userPostStats}>
                 <View style={style.userPostStatButton}>
                     <FontAwesomeIcon icon={faHeart} color={'#79869F'} />
-                    <Text style={style.userPostStatsText}>{props.likes}</Text>
+                    <Text style={style.userPostStatText}>{props.likes}</Text>
                 </View>
                 <View style={style.userPostStatButtonRight}>
                     <FontAwesomeIcon icon={faMessage} color={'#79869F'} />

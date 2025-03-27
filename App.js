@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
+  Dimensions,
  } from "react-native";
 import Title from "./components/Title/Title";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -12,6 +13,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import globalStyle from "./assets/styles/globalStyle";
 import UserStory from "./components/UserStory/UserStory";
 import UserPost from "./components/UserPost/UserPost";
+import { scaleFontSize } from "./assets/styles/scaling";
 
  const App=()=>{
   const userStories=[
@@ -135,6 +137,9 @@ import UserPost from "./components/UserPost/UserPost";
   const [userPostsRenderedData,setUserPostsRenderedData]=useState([]);
   const [isLoadingUserPosts,setIsLoadingUserPosts]=useState(false);
 
+  const [screenData,setScreenData]=useState(Dimensions.get('screen'));
+  console.log(screenData);
+
   const pagination=(database,currentPage,pageSize)=>{
       //console.log('current page ',currentPage)
     //The first time we fetch it, we want it to be index zero.
@@ -162,6 +167,11 @@ import UserPost from "./components/UserPost/UserPost";
     const getInitialDataPosts = pagination(userPosts, 1, userPostsPageSize);
     setUserPostsRenderedData(getInitialDataPosts);
     setIsLoadingUserPosts(false);
+
+    //changing dimensions
+    Dimensions.addEventListener('change',result=>{
+      setScreenData(result.screen)
+    })
   }, []);
   /* eslint-disable react-hooks/exhaustive-deps */  
 
@@ -174,7 +184,11 @@ import UserPost from "./components/UserPost/UserPost";
             <View style={globalStyle.header}>
               <Title title={'Lets Explore'}/>
               <TouchableOpacity style={globalStyle.messageIcon}>
-                <FontAwesomeIcon icon={faEnvelope} size={20} color={'#898DAE'}/>
+                <FontAwesomeIcon 
+                  icon={faEnvelope} 
+                  size={scaleFontSize(20)} 
+                  color={'#898DAE'}
+                />
                 <View style={globalStyle.messageNumberContainer}>
                   <Text style={globalStyle.messageNumber}>2</Text>
                 </View>
