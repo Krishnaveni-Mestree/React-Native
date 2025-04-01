@@ -3,3 +3,4 @@ export const Routes={
     Home: 'Home',
     Profile: 'Profile',
 };
+console.log('Defined Routes:', Routes);
