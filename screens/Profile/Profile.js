@@ -11,6 +11,7 @@ import {
 import globalStyle from "../../assets/styles/globalStyle";
 import { Routes } from "../../navigation/Routes";
 import style from "./style";
+import { ProfieTabsNavigation } from "../../navigation/MainNavigation";
 
 
  const Profile=({navigation})=>{
@@ -43,7 +44,11 @@ import style from "./style";
                         <Text style={style.statType}>Posts</Text>
                     </View>
                 </View>
+                <View style={[globalStyle.flex,{height:500}]}>
+                    <ProfieTabsNavigation/>
+                </View>
             </ScrollView>
+            
         </SafeAreaView>
     );
  };

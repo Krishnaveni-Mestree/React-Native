@@ -11,7 +11,6 @@ const globalStyle=StyleSheet.create({
     flexGrow:{
         flexGrow:1,
     },
-    
 });
 
 export default globalStyle;

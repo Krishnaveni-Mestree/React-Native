@@ -10,7 +10,6 @@ const style=StyleSheet.create({
 
     },
     profileImageContainer:{
-        flex:1,
         flexDirection:'row',
         justifyContent:'center',
         marginTop:verticalScale(32)
