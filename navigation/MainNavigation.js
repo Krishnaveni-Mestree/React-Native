@@ -5,34 +5,15 @@ import Profile from '../screens/Profile/Profile.js';
 
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
-import { Text, View } from 'react-native';
+
 import ProfileTabTitle from '../components/ProfileTabTitle/ProfileTabTitle.js';
+import ProfileTabContent from '../components/ProfileTabContent/ProfileTabContent.js';
 
 const Stack=createStackNavigator();
 const Drawer=createDrawerNavigator();
 const ProfileTabs=createMaterialTopTabNavigator();
 
-const Tab1=()=>{
-    return (
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>This is Tab1</Text>
-        </View>
-    );
-};
-const Tab2=()=>{
-    return (
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>This is Tab2</Text>
-        </View>
-    );
-};
-const Tab3=()=>{
-    return (
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>This is Tab3</Text>
-        </View>
-    );
-};
+
 export const ProfieTabsNavigation=()=>{
     return(
       <ProfileTabs.Navigator style={{ flex: 1 }} screenOptions={
@@ -53,7 +34,7 @@ export const ProfieTabsNavigation=()=>{
                     <ProfileTabTitle title={'Photos'} isFocused={focused} />
                 ),
             }}
-            component={Tab1}/>
+            component={ProfileTabContent}/>
         <ProfileTabs.Screen 
             name={'Tab2'} 
             options={{
@@ -61,7 +42,7 @@ export const ProfieTabsNavigation=()=>{
                     <ProfileTabTitle title={'Videos'} isFocused={focused} />
                 ),
             }}
-            component={Tab2}/>
+            component={ProfileTabContent}/>
         <ProfileTabs.Screen 
             name={'Tab3'} 
             options={{
@@ -69,7 +50,7 @@ export const ProfieTabsNavigation=()=>{
                     <ProfileTabTitle title={'Saved'} isFocused={focused}/>
                 ),
             }}
-            component={Tab3}/>
+            component={ProfileTabContent}/>
       </ProfileTabs.Navigator>
     )
 }
