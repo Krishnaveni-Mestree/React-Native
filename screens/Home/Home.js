@@ -15,11 +15,10 @@ import UserStory from "../../components/UserStory/UserStory";
 import UserPost from "../../components/UserPost/UserPost";
 import { scaleFontSize } from "../../assets/styles/scaling";
 import globalStyle from "../../assets/styles/globalStyle";
-import { Routes } from "../../navigation/Routes";
 
 //To use the navigation on a screen level, 
 // what we can do is make sure that we grab a prop that comes with every screen that's available inside the Stack.screen.
- const Home=({navigation})=>{
+ const Home=()=>{
   const userStories=[
     {//id1  //0
       firstName:'Krishna',
@@ -181,7 +180,7 @@ import { Routes } from "../../navigation/Routes";
           <>
             <View style={style.header}>
               <Title title={'Lets Explore'}/>
-              <TouchableOpacity style={style.messageIcon} onPress={()=>{navigation.navigate(Routes.Profile)}}>
+              <TouchableOpacity style={style.messageIcon}>
                 <FontAwesomeIcon 
                   icon={faEnvelope} 
                   size={scaleFontSize(20)} 
