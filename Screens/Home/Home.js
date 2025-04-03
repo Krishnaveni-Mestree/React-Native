@@ -5,15 +5,19 @@ import Header from "../../components/Header/Header";
 
 import globalStyle from "../../assets/styles/globalStyle";
 import style from "./style";
+import Button from "../../components/Button/Button";
+import Tab from "../../components/Tab/Tab";
+import Badge from "../../components/Badge/Badge";
+
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Home=()=>{
     return(
         <SafeAreaView style={[globalStyle.backGroundWhite,globalStyle.flex]}>
             <Text></Text>
             <View>
-                <Header title={'Azzahri A.'} type={1}/>
-                <Header title={'Azzahri A.'} type={2}/>
-                <Header title={'Azzahri A.'} type={3}/>
+                
             </View>
         </SafeAreaView>
     );
