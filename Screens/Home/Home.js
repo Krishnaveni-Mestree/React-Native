@@ -11,13 +11,14 @@ import Badge from "../../components/Badge/Badge";
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Search from "../../components/Search/Search";
 
 const Home=()=>{
     return(
         <SafeAreaView style={[globalStyle.backGroundWhite,globalStyle.flex]}>
             <Text></Text>
             <View>
-                
+               <Search onSearch={(val)=>{console.log(val)}}/> 
             </View>
         </SafeAreaView>
     );
