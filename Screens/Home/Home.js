@@ -18,6 +18,7 @@ import { horizontalScale } from "../../assets/styles/scaling";
 import { useDispatch, useSelector } from "react-redux";
 import { FlatList } from "react-native-gesture-handler";
 import { updateSelectedCategoryId } from "../../redux/reducers/Categories";
+import { resetDonations } from "../../redux/reducers/Donations";
 
 
 const Home=()=>{
@@ -26,6 +27,11 @@ const Home=()=>{
     // console.log(user);
     const categories=useSelector(state=>state.categories);
     // console.log(categories);
+    const donations=useSelector(state=>state.donations)
+
+    dispatch(resetDonations);  //or need to use persitor.purge() in store
+    console.log('this is our current donations state',donations)
+    
     const [categoryPage, setCategoryPage] = useState(1);
     const [categoryList, setCategoryList] = useState([]);
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
@@ -41,7 +47,7 @@ const Home=()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log(categoryList.length)
+    //console.log(categoryList.length)
 
     const pagination = (items, pageNumber, pageSize) => {
       const startIndex = (pageNumber - 1) * pageSize;
