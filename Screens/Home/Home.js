@@ -29,13 +29,23 @@ const Home=()=>{
     // console.log(categories);
     const donations=useSelector(state=>state.donations)
 
-    dispatch(resetDonations);  //or need to use persitor.purge() in store
-    console.log('this is our current donations state',donations)
-    
+    //dispatch(resetDonations());  //or need to use persitor.purge() in store
+    //console.log('this is our current donations state',donations)
+
     const [categoryPage, setCategoryPage] = useState(1);
     const [categoryList, setCategoryList] = useState([]);
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const categoryPageSize = 4;
+
+    useEffect(()=>{
+        const items=donations.items;
+        //console.log(items);   displaying all items
+        const filteredItems=items.filter((val)=>
+            val.categoryIds.includes(categories.selectedCategoryId),
+        );
+        console.log(filteredItems)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[categories.selectedCategoryId]);
 
     useEffect(() => {
       setIsLoadingCategories(true);
@@ -93,10 +103,10 @@ const Home=()=>{
                           if (isLoadingCategories) {
                             return;
                           }
-                          console.log(
-                            'User has reached the end and we are getting more data for page number ',
-                            categoryPage,
-                          );
+                        //   console.log(
+                        //     'User has reached the end and we are getting more data for page number ',
+                        //     categoryPage,
+                        //   );
                           setIsLoadingCategories(true);
                           let newData = pagination(
                             categories.categories,
