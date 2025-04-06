@@ -6,7 +6,7 @@ const style=StyleSheet.create({
     searchInput:{
         flex:1,
         marginLeft:horizontalScale(8),
-        height:'100%',
+        height:100,
         fontFamily:getFontFamily('Inter'),
         fontSize:scaleFontSize(14),
         lineHeight:scaleFontSize(14),

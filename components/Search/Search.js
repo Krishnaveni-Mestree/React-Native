@@ -24,6 +24,7 @@ const Search=(props)=>{
         >
             <FontAwesomeIcon icon={faSearch} color={'#25c0ff'} size={scaleFontSize(22)}/>
             <TextInput
+                placeholder={props.placeHolder} 
                 ref={textInputRef}
                 style={style.searchInput}
                 value={search}
@@ -35,10 +36,12 @@ const Search=(props)=>{
 
 Search.defaultProps={
     onSearch:()=>{},
+    placeHolder:"Search",
 };
 
 Search.propTypes={
     onSearch:PropTypes.func,
+    placeHolder:PropTypes.string,
 }
 
 export default Search;

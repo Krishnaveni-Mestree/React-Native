@@ -8,15 +8,14 @@ import { horizontalScale } from "../../assets/styles/scaling";
 const Tab=(props)=>{
     const [width,setWidth]=useState(0);
     const  textRef=useRef(null);
-    const paddingHorizontal=33;
+    const paddingHorizontal=30;
     const tabWidth={
         width:horizontalScale(paddingHorizontal*2+width),  
     }
     return (
         <Pressable
-            disabled={props.isInactive}
             style={[style.tab,props.isInactive && style.inactiveTab,tabWidth]}
-            onPress={props.onPress}
+            onPress={()=>props.onPress(props.tabId)}
         >
             <Text
                 ref={textRef}
@@ -31,12 +30,12 @@ const Tab=(props)=>{
 };
 Tab.defaultProps={
     isInactive:false,
-    onPress:()=>{},
 }
 Tab.propTypes={
     title:PropTypes.string.isRequired,
     isInactive:PropTypes.bool,
     onPress:PropTypes.func,
+    tabId:PropTypes.number.isRequired,
 }
 
 export default Tab;
