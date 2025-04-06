@@ -142,8 +142,11 @@ const Home=()=>{
                 </View>
                 {donationItems.length>0 && <View style={style.donationItemsContainer}>
                         {donationItems.map(value=>(
+                            <View 
+                                key={value.donationItemId}
+                                style={style.singleDonationItem}
+                            >
                                 <SingleDonationItem
-                                    key={value.donationItemId}
                                     price={parseFloat(value.price)}
                                     badgeTitle={categories.categories.filter(val=>val.categoryId === categories.selectedCategoryId,)[0].name}
                                     donationTitle={value.name}
@@ -153,6 +156,7 @@ const Home=()=>{
                                         console.log(selectedDonationId);
                                     }}
                                 />
+                            </View>
                         ))}
                 </View>}
             </ScrollView>

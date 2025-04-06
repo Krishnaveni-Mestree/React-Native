@@ -22,7 +22,10 @@ import style from "./style";
     }
     return (
         <View>
-            <Text style={[styleToApply(), props.color && {color:props.color}]}>{props.title}</Text>
+            <Text 
+                style={[styleToApply(), props.color && {color:props.color}]}
+                numberOfLines={props.numberOfLines ? props.numberOfLines : null}
+            >{props.title}</Text>
         </View>
     );
  };
@@ -36,5 +39,6 @@ import style from "./style";
     title:PropTypes.string,
     types:PropTypes.number,
     color:PropTypes.string,
+    numberOfLines:PropTypes.number
  };
  export default Header;
