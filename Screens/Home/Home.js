@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FlatList } from "react-native-gesture-handler";
 import { updateSelectedCategoryId } from "../../redux/reducers/Categories";
 import { resetDonations } from "../../redux/reducers/Donations";
+import { validatePathConfig } from "@react-navigation/native";
 
 
 const Home=()=>{
@@ -32,6 +33,7 @@ const Home=()=>{
     //dispatch(resetDonations());  //or need to use persitor.purge() in store
     //console.log('this is our current donations state',donations)
 
+    const [donationItems,setDonationsItems]=useState([]);
     const [categoryPage, setCategoryPage] = useState(1);
     const [categoryList, setCategoryList] = useState([]);
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
@@ -43,6 +45,7 @@ const Home=()=>{
         const filteredItems=items.filter((val)=>
             val.categoryIds.includes(categories.selectedCategoryId),
         );
+        setDonationsItems(filteredItems);
         console.log(filteredItems)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[categories.selectedCategoryId]);
@@ -137,6 +140,21 @@ const Home=()=>{
                         }
                     />
                 </View>
+                {donationItems.length>0 && <View style={style.donationItemsContainer}>
+                        {donationItems.map(value=>(
+                                <SingleDonationItem
+                                    key={value.donationItemId}
+                                    price={parseFloat(value.price)}
+                                    badgeTitle={categories.categories.filter(val=>val.categoryId === categories.selectedCategoryId,)[0].name}
+                                    donationTitle={value.name}
+                                    uri={value.image}
+                                    donationItemId={value.donationItemId}
+                                    onPress={selectedDonationId=>{
+                                        console.log(selectedDonationId);
+                                    }}
+                                />
+                        ))}
+                </View>}
             </ScrollView>
         </SafeAreaView>
     );

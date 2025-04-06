@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { 
     Image,
+    Pressable,
     View,
  } from "react-native";
 
@@ -12,7 +13,7 @@ import {
 
 const SingleDonationItem=(props)=>{
     return (
-        <View>
+        <Pressable onPress={()=>{props.onPress(props.donationItemId)}}>
             <View>
                 <View style={style.badge}>
                     <Badge title={props.badgeTitle}/>
@@ -20,7 +21,7 @@ const SingleDonationItem=(props)=>{
                 <Image
                     source={{uri:props.uri}}
                     style={style.image}
-                    resizeMode={'contain'}
+                    resizeMode={'cover'}
                 />
             </View>
             <View style={style.donationInfo}>
@@ -29,14 +30,19 @@ const SingleDonationItem=(props)=>{
                     <Header title={'$'+props.price.toFixed(2)} type={3} color={'#156cf7'} />
                 </View>
             </View>
-        </View>
+        </Pressable>
     );
 };
+SingleDonationItem.defaultProps={
+    onPress:()=>{},
+}
 
 SingleDonationItem.propTypes={
     uri:PropTypes.string.isRequired,
     badgeTitle:PropTypes.string.isRequired,
     donationTitle:PropTypes.string.isRequired,
     price:PropTypes.number.isRequired,
+    onPress:PropTypes.func,
+    donationItemId:PropTypes.number.isRequired,
 }
 export default SingleDonationItem;
