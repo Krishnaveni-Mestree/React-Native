@@ -47,7 +47,7 @@ const Home=({navigation})=>{
             val.categoryIds.includes(categories.selectedCategoryId),
         );
         setDonationsItems(filteredItems);
-        console.log(filteredItems)
+        // console.log(filteredItems)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[categories.selectedCategoryId]);
 
@@ -142,25 +142,36 @@ const Home=({navigation})=>{
                     />
                 </View>
                 {donationItems.length>0 && <View style={style.donationItemsContainer}>
-                        {donationItems.map(value=>(
-                            <View 
-                                key={value.donationItemId}
-                                style={style.singleDonationItem}
-                            >
-                                <SingleDonationItem
-                                    price={parseFloat(value.price)}
-                                    badgeTitle={categories.categories.filter(val=>val.categoryId === categories.selectedCategoryId,)[0].name}
-                                    donationTitle={value.name}
-                                    uri={value.image}
-                                    donationItemId={value.donationItemId}
-                                    onPress={selectedDonationId=>{
-                                        //console.log(selectedDonationId);
-                                        dispatch(updateSelectedDonationId(selectedDonationId));
-                                        navigation.navigate(Routes.SingleDonationItem);
-                                    }}
-                                />
-                            </View>
-                        ))}
+                        {donationItems.map(value=>{
+                            const categoryInformation=categories.categories.find(
+                                val=>val.categoryId === categories.selectedCategoryId,
+                            );
+                            return(
+                                <View 
+                                    key={value.donationItemId}
+                                    style={style.singleDonationItem}
+                                >
+                                    <SingleDonationItem
+                                        price={parseFloat(value.price)}
+                                        badgeTitle={
+                                            // categories.categories.filter(
+                                            //     val=>val.categoryId === categories.selectedCategoryId,
+                                            // )[0].name
+                                            categoryInformation.name
+                                        }
+                                        donationTitle={value.name}
+                                        uri={value.image}
+                                        donationItemId={value.donationItemId}
+                                        onPress={selectedDonationId=>{
+                                            //console.log(selectedDonationId);
+                                            dispatch(updateSelectedDonationId(selectedDonationId));
+                                            navigation.navigate(Routes.SingleDonationItem,{
+                                                categoryInformation
+                                            });
+                                        }}
+                                    />
+                                </View>);
+                        })}
                 </View>}
             </ScrollView>
         </SafeAreaView>
