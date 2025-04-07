@@ -204,6 +204,8 @@ const initialState={
         },
     ],
     selectedDonationId:null,
+    //have to get infromation object for new screen
+    selectedDonationInformation:{},
 }
 const Donations=createSlice({
     name:'donations',
@@ -212,11 +214,12 @@ const Donations=createSlice({
         resetDonations:()=>{
             return initialState;
         },
-        updateSelectedDOnationId:(state,action)=>{
+        updateSelectedDonationId:(state,action)=>{
             state.selectedDonationId=action.payload;
+            state.selectedDonationInformation=state.items.find(item=>item.donationItemId === action.payload);
         }
     }
 })
 
-export const {resetDonations,updateSelectedDOnationId}=Donations.actions
+export const {resetDonations,updateSelectedDonationId}=Donations.actions
 export default Donations.reducer;

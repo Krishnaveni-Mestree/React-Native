@@ -18,11 +18,12 @@ import { horizontalScale } from "../../assets/styles/scaling";
 import { useDispatch, useSelector } from "react-redux";
 import { FlatList } from "react-native-gesture-handler";
 import { updateSelectedCategoryId } from "../../redux/reducers/Categories";
-import { resetDonations } from "../../redux/reducers/Donations";
+import { resetDonations, updateSelectedDonationId } from "../../redux/reducers/Donations";
 import { validatePathConfig } from "@react-navigation/native";
+import { Routes } from "../../navigation/Routes";
 
 
-const Home=()=>{
+const Home=({navigation})=>{
     const user=useSelector(state=>state.user);
     const dispatch=useDispatch();
     // console.log(user);
@@ -153,7 +154,9 @@ const Home=()=>{
                                     uri={value.image}
                                     donationItemId={value.donationItemId}
                                     onPress={selectedDonationId=>{
-                                        console.log(selectedDonationId);
+                                        //console.log(selectedDonationId);
+                                        dispatch(updateSelectedDonationId(selectedDonationId));
+                                        navigation.navigate(Routes.SingleDonationItem);
                                     }}
                                 />
                             </View>
