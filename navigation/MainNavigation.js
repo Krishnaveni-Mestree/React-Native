@@ -3,6 +3,7 @@ import {Routes} from './Routes';
 import Home from '../Screens/Home/Home.js';
 import SingleDonationItem from '../Screens/SingleDonationItem/SingleDonationItem.js';
 import Login from '../Screens/Login/Login.js';
+import Registration from '../Screens/Registration/Registration.js';
 
 const Stack = createStackNavigator();
 
@@ -12,6 +13,7 @@ const MainNavigation = () => {
       initialRouteName={Routes.Login}
       screenOptions={{header: () => null, headerShown: false}}>
       <Stack.Screen name={Routes.Login} component={Login} />
+      <Stack.Screen name={Routes.Registration} component={Registration}/>
       <Stack.Screen name={Routes.Home} component={Home} />
       <Stack.Screen
         name={Routes.SingleDonationItem}

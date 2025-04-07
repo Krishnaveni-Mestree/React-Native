@@ -10,7 +10,7 @@ const style=StyleSheet.create({
         color:'#36455A',
     },
     input:{
-       paddingVertical:verticalScale(12),
+       paddingVertical:verticalScale(10),
        borderBottomWidth:1,
        borderBottomColor:'rgba(167,167,167,0.5)'
     }

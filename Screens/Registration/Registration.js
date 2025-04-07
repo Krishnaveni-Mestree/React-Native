@@ -6,21 +6,36 @@ import globalStyle from "../../assets/styles/globalStyle";
 import Input from "../../components/Input/Input";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
-import { Routes } from "../../navigation/Routes";
+import BackButton from "../../components/BackButton/BackButton";
 
-const Login=({navigation})=>{
+const Registration=({navigation})=>{
+    const [fullName,setFullName]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     //console.log(email);
     return (
         <SafeAreaView style={[globalStyle.backGroundWhite,globalStyle.flex]}>
+            <View style={style.backButton}>
+                <BackButton
+                    onPress={()=>navigation.goBack()}
+                />
+            </View>
             <ScrollView
                 contentContainerStyle={style.container}
                 showsVerticalScrollIndicator={false}
 
             >
                 <View style={globalStyle.marginBottom24}>
-                    <Header type={1} title={'Welcome Back'}/>
+                    <Header type={1} title={'Hello and Welcome !'}/>
+                </View>
+                <View style={globalStyle.marginBottom24}>
+                    <Input
+                        label={'First & Last Name'} 
+                        placeholder={'Enter Your Full Name..'}
+                        onChangeText={(val)=>setEmail(val)}
+                        keyboardType={'email-address'}
+                        
+                    />
                 </View>
                 <View style={globalStyle.marginBottom24}>
                     <Input
@@ -40,17 +55,12 @@ const Login=({navigation})=>{
                     />
                 </View>
                 <View style={globalStyle.marginBottom24}>
-                    <Button title={'Login'}/>
+                    <Button title={'Register'}/>
                 </View>
-                <Pressable 
-                    style={style.registrationButton}
-                    onPress={()=>navigation.navigate(Routes.Registration)}    
-                >
-                    <Header type={3} title={"Don't have an account?"} color={'#156cf7'}/>
-                </Pressable>
+                
             </ScrollView>
         </SafeAreaView>
     );
 };
 
-export default Login;
+export default Registration;
