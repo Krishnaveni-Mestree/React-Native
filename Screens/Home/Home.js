@@ -26,7 +26,7 @@ import { Routes } from "../../navigation/Routes";
 const Home=({navigation})=>{
     const user=useSelector(state=>state.user);
     const dispatch=useDispatch();
-    // console.log(user);
+    console.log(user);
     const categories=useSelector(state=>state.categories);
     // console.log(categories);
     const donations=useSelector(state=>state.donations)
@@ -79,7 +79,7 @@ const Home=({navigation})=>{
                 <View style={style.header}>
                     <View style={style.username}>
                     <Text style={style.headerIntroText}>Hello,</Text>
-                        <Header title={user.firstName + ' ' + user.lastName[0]+'.👋'} />
+                        <Header title={user.displayName +'. 👋'} />
                     </View>
                     <Image 
                         source={{uri:user.profileImage}} 

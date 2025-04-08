@@ -8,12 +8,16 @@ import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { Routes } from "../../navigation/Routes";
 import { loginUser } from "../../api/user";
+import { logIn, resetToInitialState } from "../../redux/reducers/User";
+import { useDispatch } from "react-redux";
 
 const Login=({navigation})=>{
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [error,setError]=useState('');
-    //console.log(email);
+
+    const dispatch=useDispatch();
+    
     return (
         <SafeAreaView style={[globalStyle.backGroundWhite,globalStyle.flex]}>
             <ScrollView
@@ -51,7 +55,8 @@ const Login=({navigation})=>{
                                 setError(user.error)
                             }
                             else{
-                                setError('')
+                                setError('');
+                                dispatch(logIn(user.data))
                                 navigation.navigate(Routes.Home)
                             }
                         }}
