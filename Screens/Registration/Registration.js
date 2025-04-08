@@ -13,6 +13,8 @@ const Registration=({navigation})=>{
     const [fullName,setFullName]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
+    const [success,setSuccess]=useState('');
+    const [error,setError]=useState('');
     //console.log(email);
     //console.log('hello');
     return (
@@ -34,7 +36,7 @@ const Registration=({navigation})=>{
                     <Input
                         label={'First & Last Name'} 
                         placeholder={'Enter Your Full Name..'}
-                        onChangeText={(val)=>setEmail(val)}
+                        onChangeText={(val)=>setFullName(val)}
                         keyboardType={'email-address'}
                         
                     />
@@ -56,10 +58,24 @@ const Registration=({navigation})=>{
                         onChangeText={(val)=>setPassword(val)}
                     />
                 </View>
+                {error.length>0 && <Text style={style.error}>{error}</Text>}
+                {success.length>0 && <Text style={style.success}>{success}</Text>}
                 <View style={globalStyle.marginBottom24}>
                     <Button
                         title={'Register'}
-                        onPress={async ()=> await createUser(fullName,email,password)}
+                        isDisabled={fullName.length<=2 || email.length<=5 || password.length<8}
+                        onPress={async ()=>{
+                            let user = await createUser(fullName,email,password);
+                            if(user.err){
+                                setError(user.err)
+                            }
+                            else{
+                                setSuccess("You have successfully registered.");
+                                setTimeout(()=>{
+                                    navigation.goBack()
+                                },3000)
+                            }
+                        }}
                     />
                 </View>
             </ScrollView>
