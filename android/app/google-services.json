@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766437184289",
+    "project_id": "donation-application-ecfbb",
+    "storage_bucket": "donation-application-ecfbb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766437184289:android:07ea085c36a220d98fa460",
+        "android_client_info": {
+          "package_name": "com.donationapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrPzLB1Fy428mlrE1QwuzDYahSP_bZdjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

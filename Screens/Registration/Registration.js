@@ -7,12 +7,14 @@ import Input from "../../components/Input/Input";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import BackButton from "../../components/BackButton/BackButton";
+import { createUser } from "../../api/user";
 
 const Registration=({navigation})=>{
     const [fullName,setFullName]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     //console.log(email);
+    //console.log('hello');
     return (
         <SafeAreaView style={[globalStyle.backGroundWhite,globalStyle.flex]}>
             <View style={style.backButton}>
@@ -55,9 +57,11 @@ const Registration=({navigation})=>{
                     />
                 </View>
                 <View style={globalStyle.marginBottom24}>
-                    <Button title={'Register'}/>
+                    <Button
+                        title={'Register'}
+                        onPress={async ()=> await createUser(fullName,email,password)}
+                    />
                 </View>
-                
             </ScrollView>
         </SafeAreaView>
     );
