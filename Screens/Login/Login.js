@@ -56,15 +56,14 @@ const Login=({navigation})=>{
                             }
                             else{
                                 setError('');
-                                dispatch(logIn(user.data))
-                                navigation.navigate(Routes.Home)
+                                dispatch(logIn(user.data));  // this will trigger <Authenticated /> navigator
                             }
                         }}
                     />
                 </View>
                 <Pressable 
                     style={style.registrationButton}
-                    onPress={()=>navigation.navigate(Routes.Registration)}    
+                    onPress={()=>navigation.navigate(Routes.Registration)}
                 >
                     <Header type={3} title={"Don't have an account?"} color={'#156cf7'}/>
                 </Pressable>

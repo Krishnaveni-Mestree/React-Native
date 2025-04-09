@@ -7,7 +7,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import MainNavigation from './navigation/MainNavigation';
+// import MainNavigation from './navigation/MainNavigation';
+import RootNavigation from './navigation/RootNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import  {Provider} from 'react-redux';
 import store, { persistor } from './redux/store';
@@ -21,7 +22,7 @@ const App=()=>{
       {/* <PersistGate persistor={persistor} loading={null}> */}
         <NavigationContainer>
           <StatusBar barStyle={'dark-content'}/>
-          <MainNavigation />
+          <RootNavigation />
         </NavigationContainer>
       {/* </PersistGate> */}
     </Provider>

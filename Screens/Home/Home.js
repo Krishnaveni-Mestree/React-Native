@@ -21,6 +21,8 @@ import { updateSelectedCategoryId } from "../../redux/reducers/Categories";
 import { resetDonations, updateSelectedDonationId } from "../../redux/reducers/Donations";
 import { validatePathConfig } from "@react-navigation/native";
 import { Routes } from "../../navigation/Routes";
+import { resetToInitialState } from "../../redux/reducers/User";
+import { logOut } from "../../api/user";
 
 
 const Home=({navigation})=>{
@@ -81,11 +83,20 @@ const Home=({navigation})=>{
                     <Text style={style.headerIntroText}>Hello,</Text>
                         <Header title={user.displayName +'. 👋'} />
                     </View>
-                    <Image 
-                        source={{uri:user.profileImage}} 
-                        style={style.profileImage}
-                        resizeMode={'contain'}
-                    />
+                    <View>
+                        <Image 
+                            source={{uri:user.profileImage}} 
+                            style={style.profileImage}
+                            resizeMode={'contain'}
+                        />
+                        <Pressable onPress={async ()=>{
+                                dispatch(resetToInitialState());
+                                await logOut();
+                            }}
+                        >
+                            <Header title={'Logout'} type={3} color={'#156cf7'}/>
+                        </Pressable>
+                    </View>
                 </View>
                 <View style={style.searchBox}>
                     <Search placeHolder='Search' />
