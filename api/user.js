@@ -1,5 +1,7 @@
 import { createUserWithEmailAndPassword, updateProfile,signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig'; // adjust the path as needed
+import store from '../redux/store';
+import { updateToken } from '../redux/reducers/User';
 
 export const createUser = async (fullName, email, password) => {
   try {
@@ -55,4 +57,24 @@ export const loginUser= async (email, password)=> {
 
 export const logOut= async ()=>{
   await auth().signOut();
-}
+};
+
+
+
+export const checkToken = async () => {
+  try {
+    const user = auth.currentUser;
+    if (user) {
+      const token = await user.getIdToken(true); // force refresh
+      console.log('Refreshed token:', token);
+      return token;
+    } else {
+      console.log('No user is signed in.');
+      return null;
+    }
+  } catch (err) {
+    console.log('Token refresh error:', err?.message || err);
+    return null;
+  }
+};
+

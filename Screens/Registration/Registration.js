@@ -71,9 +71,13 @@ const Registration=({navigation})=>{
                             }
                             else{
                                 setSuccess("You have successfully registered.");
-                                setTimeout(()=>{
-                                    navigation.goBack()
-                                },3000)
+                                setTimeout(() => {
+                                    if (navigation.canGoBack()) {
+                                      navigation.goBack();
+                                    } else {
+                                      navigation.navigate("Login"); // or another fallback screen
+                                    }
+                                  }, 3000);
                             }
                         }}
                     />
